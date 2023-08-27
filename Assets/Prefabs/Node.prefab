@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 359909230742665740}
   - component: {fileID: 6053724999230405686}
   - component: {fileID: 6008297209656774396}
+  - component: {fileID: 5593589020219573128}
   m_Layer: 5
   m_Name: Node
   m_TagString: Untagged
@@ -119,4 +120,33 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 6053724999230405686}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5593589020219573128}
+        m_TargetAssemblyTypeName: ConnectingNodes, Assembly-CSharp
+        m_MethodName: ChangeColor
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &5593589020219573128
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5632305641424350153}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 859aaae054af50749b9943b7b549aa68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  openColor: {r: 1, g: 0.93470955, b: 0, a: 0}
+  lockedColor: {r: 1, g: 0, b: 0, a: 0}
+  completeColor: {r: 0, g: 1, b: 0.043819427, a: 0}
+  image: {fileID: 6053724999230405686}
+  state: 
