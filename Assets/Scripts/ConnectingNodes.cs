@@ -7,22 +7,13 @@ using UnityEngine.UI;
 public class ConnectingNodes : MonoBehaviour
 {
     [SerializeField] List<Collider2D> edges;
-    [SerializeField] List<Node> nodes;
-    [SerializeField] List<Collider2D> colliders;
 
     Dictionary<Collider2D, Node> nodesAndColliders;
 
     private void Start()
     {
-        if (nodes.Count != colliders.Count)
-        {
-            return;
-        }
-        nodesAndColliders = new Dictionary<Collider2D, Node>();
-        for (int i = 0; i < nodes.Count; i++)
-        {
-            nodesAndColliders.Add(colliders[i], nodes[i]);
-        }
+        nodesAndColliders = Vertices.NodesAndColliders;
+        if (nodesAndColliders.Count == 0) return;
         ConnectNodes();
     }
 
@@ -30,7 +21,6 @@ public class ConnectingNodes : MonoBehaviour
     {
         foreach (Collider2D edge in edges)
         {
-            Debug.Log(edge);
             ContactFilter2D filter = new ContactFilter2D();
             List<Collider2D> results = new List<Collider2D>();
             filter.useLayerMask = true;

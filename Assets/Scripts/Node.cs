@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Collections;
@@ -26,7 +27,7 @@ public class Node : MonoBehaviour
 
     private void CompleteNode(Node node)
     {
-        Debug.Log(node + "is now complete.");
+        Debug.Log(node + " is now complete.");
         States.SetState(node, NodeStates.completed);
         // set open nodes to locked
         foreach (Node connectedNode in ConnectedNodes)

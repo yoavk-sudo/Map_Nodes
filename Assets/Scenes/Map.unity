@@ -1432,6 +1432,7 @@ GameObject:
   - component: {fileID: 1989648877}
   - component: {fileID: 1989648878}
   - component: {fileID: 1989648879}
+  - component: {fileID: 1989648880}
   m_Layer: 0
   m_Name: Node Manager
   m_TagString: Untagged
@@ -1477,6 +1478,33 @@ MonoBehaviour:
   - {fileID: 732192315}
   - {fileID: 150185520}
   - {fileID: 1447041403}
+--- !u!114 &1989648879
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1989648876}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6213ea3674f1b2f49ba101d63bf034ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lockedColor: {r: 1, g: 0, b: 0, a: 1}
+  openColor: {r: 1, g: 0.869557, b: 0, a: 1}
+  completeColor: {r: 0, g: 1, b: 0.021062136, a: 1}
+--- !u!114 &1989648880
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1989648876}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a4d4ca7040a3194cb0211a3f0622dbf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   nodes:
   - {fileID: 8322016310766805415}
   - {fileID: 1069790462}
@@ -1495,30 +1523,6 @@ MonoBehaviour:
   - {fileID: 1682578130}
   - {fileID: 2040282322}
   - {fileID: 2138193519}
---- !u!114 &1989648879
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1989648876}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6213ea3674f1b2f49ba101d63bf034ea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lockedColor: {r: 1, g: 0, b: 0, a: 1}
-  openColor: {r: 1, g: 0.869557, b: 0, a: 1}
-  completeColor: {r: 0, g: 1, b: 0.021062136, a: 1}
-  nodes:
-  - {fileID: 8322016310766805415}
-  - {fileID: 1069790462}
-  - {fileID: 199971621}
-  - {fileID: 319383496}
-  - {fileID: 2103877479}
-  - {fileID: 1682578131}
-  - {fileID: 2040282323}
-  - {fileID: 2138193520}
 --- !u!1001 &2040282318
 PrefabInstance:
   m_ObjectHideFlags: 0

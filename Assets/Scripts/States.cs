@@ -8,13 +8,12 @@ public class States : MonoBehaviour
     [ColorUsage(true, true), SerializeField] Color lockedColor;
     [ColorUsage(true, true), SerializeField] Color openColor;
     [ColorUsage(true, true), SerializeField] Color completeColor;
-    [SerializeField] Node[] nodes; ///
 
     static Dictionary<Color, NodeStates> nodeStates = new Dictionary<Color, NodeStates>(); //erase static??????
     static Dictionary<NodeStates, Color> reverseNodeStates = new Dictionary<NodeStates, Color>();
     static Node currentNode;
 
-    //public static Dictionary<Color, string> NodeStates { get { return nodeStates; } }
+    List<Node> nodes;
 
     private void Awake()
     {
@@ -25,6 +24,10 @@ public class States : MonoBehaviour
         {
             reverseNodeStates[nodeState.Value] = nodeState.Key;
         }
+    }
+    private void Start()
+    {
+        nodes = Vertices.Nodes;
         SetNodesStatesFirstTime();
     }
 
