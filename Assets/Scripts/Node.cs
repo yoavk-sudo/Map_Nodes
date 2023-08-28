@@ -5,11 +5,34 @@ using UnityEngine;
 
 public class Node : MonoBehaviour
 {
-    public List<Node> ConnectedNodes;
+    [SerializeField] List<Node> connectedNodes;
 
     [SerializeField] SpriteRenderer sprite;
-    [SerializeField, ReadOnly] string state;
+    [SerializeField, ReadOnly] NodeStates state;
 
     public SpriteRenderer Sprite { get { return sprite; } }
-    public string State { get { return state; } set { state = value; } }
+    public List<Node> ConnectedNodes { get { return connectedNodes; } }
+    public NodeStates State { get { return state; } set { state = value; } }
+
+    public void OnClick(Node node)
+    {
+        if (node.state != NodeStates.open)
+        {
+            Debug.Log($"Cannot be clicked, node's state is {node.state}");
+            return;
+        }
+        CompleteNode(node);
+    }
+
+    private void CompleteNode(Node node)
+    {
+        Debug.Log(node + "is now complete.");
+        States.SetState(node, NodeStates.completed);
+        // set open nodes to locked
+        foreach (Node connectedNode in ConnectedNodes)
+        {
+            if (connectedNode.state == NodeStates.completed) continue;
+            States.SetState(connectedNode, NodeStates.open);
+        }
+    }
 }

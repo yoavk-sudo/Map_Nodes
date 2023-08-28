@@ -8,18 +8,19 @@ public class States : MonoBehaviour
     [ColorUsage(true, true), SerializeField] Color lockedColor;
     [ColorUsage(true, true), SerializeField] Color openColor;
     [ColorUsage(true, true), SerializeField] Color completeColor;
-    [SerializeField] Node[] nodes;
+    [SerializeField] Node[] nodes; ///
 
-    static Dictionary<Color, string> nodeStates = new Dictionary<Color, string>(); //erase static??????
-    static Dictionary<string, Color> reverseNodeStates = new Dictionary<string, Color>();
+    static Dictionary<Color, NodeStates> nodeStates = new Dictionary<Color, NodeStates>(); //erase static??????
+    static Dictionary<NodeStates, Color> reverseNodeStates = new Dictionary<NodeStates, Color>();
+    static Node currentNode;
 
     //public static Dictionary<Color, string> NodeStates { get { return nodeStates; } }
 
     private void Awake()
     {
-        nodeStates.Add(lockedColor, "Locked");
-        nodeStates.Add(openColor, "Opened");
-        nodeStates.Add(completeColor, "Completed");
+        nodeStates.Add(lockedColor, NodeStates.locked);
+        nodeStates.Add(openColor, NodeStates.open);
+        nodeStates.Add(completeColor, NodeStates.completed);
         foreach (var nodeState in nodeStates)
         {
             reverseNodeStates[nodeState.Value] = nodeState.Key;
@@ -27,13 +28,26 @@ public class States : MonoBehaviour
         SetNodesStatesFirstTime();
     }
 
-    public static void SetState(Node node, string state)
+    public static void SetState(Node node, NodeStates state)
     {
         node.State = state;
         node.Sprite.color = FindKeyByValue(state);
+        if (state == NodeStates.completed)
+        {
+            SetOpenNodesToLocked();
+            currentNode = node;
+        }
     }
 
-    private static Color FindKeyByValue(string state)
+    private static void SetOpenNodesToLocked()
+    {
+        foreach (Node conNode in currentNode.ConnectedNodes)
+        {
+            if (conNode.State == NodeStates.open)  SetState(conNode, NodeStates.locked);
+        }
+    }
+
+    private static Color FindKeyByValue(NodeStates state)
     {
         if (reverseNodeStates.TryGetValue(state, out Color color))
         {
@@ -44,15 +58,15 @@ public class States : MonoBehaviour
 
     private void SetNodesStatesFirstTime()
     {
-        //Node[] nodes = new Node[10]; //////////////////////////////////////////////////////
         foreach (Node node in nodes)
         {
             if (node.CompareTag("root"))
             {
-                SetState(node, "Opened");
+                SetState(node, NodeStates.open);
+                currentNode = node;
                 continue;
             }
-            SetState(node, "Locked");
+            SetState(node, NodeStates.locked);
         }
     }
 }

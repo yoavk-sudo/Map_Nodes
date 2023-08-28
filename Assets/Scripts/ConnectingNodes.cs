@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,7 +9,7 @@ public class ConnectingNodes : MonoBehaviour
     [SerializeField] List<Collider2D> edges;
     [SerializeField] List<Node> nodes;
     [SerializeField] List<Collider2D> colliders;
-    
+
     Dictionary<Collider2D, Node> nodesAndColliders;
 
     private void Start()
