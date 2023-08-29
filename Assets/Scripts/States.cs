@@ -9,11 +9,12 @@ public class States : MonoBehaviour
     [ColorUsage(true, true), SerializeField] Color openColor;
     [ColorUsage(true, true), SerializeField] Color completeColor;
 
-    static Dictionary<Color, NodeStates> nodeStates = new Dictionary<Color, NodeStates>(); //erase static??????
+    static Dictionary<Color, NodeStates> nodeStates = new Dictionary<Color, NodeStates>();
     static Dictionary<NodeStates, Color> reverseNodeStates = new Dictionary<NodeStates, Color>();
     static Node currentNode;
 
     List<Node> nodes;
+    bool foundRoot = false;
 
     private void Awake()
     {
@@ -63,10 +64,11 @@ public class States : MonoBehaviour
     {
         foreach (Node node in nodes)
         {
-            if (node.CompareTag("root"))
+            if (node.CompareTag("root") && !foundRoot)
             {
                 SetState(node, NodeStates.open);
                 currentNode = node;
+                foundRoot = true; // Preventing multiple roots
                 continue;
             }
             SetState(node, NodeStates.locked);

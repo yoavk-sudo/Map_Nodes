@@ -6,12 +6,13 @@ using UnityEngine.UI;
 
 public class ConnectingNodes : MonoBehaviour
 {
-    [SerializeField] List<Collider2D> edges;
 
+    List<Collider2D> edges;
     Dictionary<Collider2D, Node> nodesAndColliders;
 
     private void Start()
     {
+        edges = Vertices.Edges;
         nodesAndColliders = Vertices.NodesAndColliders;
         if (nodesAndColliders.Count == 0) return;
         ConnectNodes();

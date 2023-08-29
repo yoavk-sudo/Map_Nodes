@@ -7,7 +7,6 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField] Camera raycastCamera;
 
-    List<Node> nodes;
     List<Collider2D> colliders;
     Dictionary<Collider2D, Node> nodesAndColliders;
     Node hitNode;
@@ -16,7 +15,6 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         raycastCamera ??= Camera.main;
-        nodes = Vertices.Nodes;
         colliders = Vertices.Colliders; 
         nodesAndColliders = Vertices.NodesAndColliders;
     }
@@ -35,10 +33,9 @@ public class GameManager : MonoBehaviour
                     break;
                 }
             }
-            //Node hitNode = ray.collider.GetComponent<Node>();
             if (hitNode != null)
             {
-                hitNode.OnClick(hitNode);
+                hitNode.NodeClicked();
             }
         }
     }

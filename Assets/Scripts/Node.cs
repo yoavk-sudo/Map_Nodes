@@ -15,14 +15,14 @@ public class Node : MonoBehaviour
     public List<Node> ConnectedNodes { get { return connectedNodes; } }
     public NodeStates State { get { return state; } set { state = value; } }
 
-    public void OnClick(Node node)
+    public void NodeClicked()
     {
-        if (node.state != NodeStates.open)
+        if (this.state != NodeStates.open)
         {
-            Debug.Log($"Cannot be clicked, node's state is {node.state}");
+            Debug.Log($"Cannot be clicked, node's state is {this.state}");
             return;
         }
-        CompleteNode(node);
+        CompleteNode(this);
     }
 
     private void CompleteNode(Node node)
