@@ -1,5 +1,3 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using Unity.Collections;
 using UnityEngine;
@@ -7,7 +5,6 @@ using UnityEngine;
 public class Node : MonoBehaviour
 {
     [SerializeField] List<Node> connectedNodes;
-
     [SerializeField] SpriteRenderer sprite;
     [SerializeField, ReadOnly] NodeStates state;
 
@@ -32,7 +29,7 @@ public class Node : MonoBehaviour
         // set open nodes to locked
         foreach (Node connectedNode in ConnectedNodes)
         {
-            if (connectedNode.state == NodeStates.completed) continue;
+            if (connectedNode.state != NodeStates.locked) continue;
             States.SetState(connectedNode, NodeStates.open);
         }
     }

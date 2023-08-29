@@ -1,5 +1,3 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -28,6 +26,7 @@ public class States : MonoBehaviour
     }
     private void Start()
     {
+        if (Vertices.Nodes == null) return;
         nodes = Vertices.Nodes;
         SetNodesStatesFirstTime();
     }
@@ -35,23 +34,14 @@ public class States : MonoBehaviour
     public static void SetState(Node node, NodeStates state)
     {
         node.State = state;
-        node.Sprite.color = FindKeyByValue(state);
+        node.Sprite.color = FindColorByNodeState(state);
         if (state == NodeStates.completed)
         {
-            SetOpenNodesToLocked();
             currentNode = node;
         }
     }
 
-    private static void SetOpenNodesToLocked()
-    {
-        foreach (Node conNode in currentNode.ConnectedNodes)
-        {
-            if (conNode.State == NodeStates.open)  SetState(conNode, NodeStates.locked);
-        }
-    }
-
-    private static Color FindKeyByValue(NodeStates state)
+    private static Color FindColorByNodeState(NodeStates state)
     {
         if (reverseNodeStates.TryGetValue(state, out Color color))
         {
